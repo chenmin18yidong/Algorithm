@@ -6,8 +6,12 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import org.w3c.dom.Text;
+
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Random;
+import java.util.Scanner;
 
 /**
  * @author Administrator
@@ -16,7 +20,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private Integer[] items;
     private EditText edtItems;
     private TextView tvResult;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +57,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     private void directSort() {
         //todo:直接选择排序的具体实现
+        for(int i=0; i<items.length; i++) {
+            for(int j=i+1; j<items.length; j++) {
+                if(items[i] < items[j]) {
+                    int temp = items[i];
+                    items[i] = items[j];
+                    items[j] = temp;
+                }
+            }
+        }
     }
 
     private void generateItems() {
