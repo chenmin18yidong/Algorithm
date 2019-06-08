@@ -1,5 +1,6 @@
 package net.lzzy.algorithm;
 
+import android.provider.ContactsContract;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -18,12 +19,14 @@ import java.util.Scanner;
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Integer[] items;
-    private EditText edtItems;
+    private EditText edtItems,et1;
     private TextView tvResult;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        et1=findViewById(R.id.et1);
         edtItems = findViewById(R.id.activity_main_edt_items);
         findViewById(R.id.activity_main_btn_generate).setOnClickListener(this);
         findViewById(R.id.activity_main_btn_sort).setOnClickListener(this);
@@ -40,11 +43,41 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 directSort();
                 displayItems(tvResult);
                 break;
-            default:
+            case R.id.bt1:
+                AAA();
+                displayItems(et1);
+                default:
                 break;
         }
     }
 
+    private void AAA() {
+
+        //给一个空白区域，
+        //第一遍循环，以第一个为最小值，和后面几个作比较，
+        //若第二个比第一个大，就不做处理，往下作比较，若第二个小于第一个，则把第二个放入空白区域，第一个和第二个交换
+        //把第二个从空白区域拿出，放到第一个的位置，然后拿已经变化的第二个和第三个做比较
+        //往后依次进行比较，直到所有比较完成.
+
+        // 定义一个i为0；
+        for(int i = 0;i <items.length;i++){
+            int k = i;
+            for(int j = i+1;j < items.length;j++){
+                if(items[j] < items[k]){
+                   k= j;
+                }
+            }
+
+           if(k != i){
+
+                int temp = 0;
+                temp = items[i];
+               items[i] = items[k];
+                items[k] = temp;
+            }
+        }
+
+    }
 
     private void displayItems(TextView tv) {
         String display = "";
@@ -65,24 +98,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //min=j;
         //}}
         //swap(min,i)
-
         for(int i=0; i<items.length; i++) {
             for(int j=i+1; j<items.length; j++) {
-                if(items[i] < items[j]) {
+                if(items[i] <items[j]) {
                     int temp = items[i];
-                    items[i] = items[j];
-                    items[j] = temp;
-
-
+                    items[i]=  items[j];
+                    items[j]=  temp;
                 }
             }
         }
-
     }
-
-
-
-
     private void generateItems() {
         items = new Integer[10];
         Random generator = new Random();
