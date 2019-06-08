@@ -53,6 +53,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         display = display.substring(0, display.length() - 1);
         tv.setText(display);
     }
+
+
     private void directSort() {
         //todo:直接选择排序的具体实现
         //分为有序区和无序区，每一趟排序都在无序区依次对比，记录对比区域的最小元素的位置
@@ -64,10 +66,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //min=j;
         //}}
         //swap(min,i)
-
-
-
-
 
         for(int i=0; i<items.length; i++) {
             for(int j=i+1; j<items.length; j++) {
