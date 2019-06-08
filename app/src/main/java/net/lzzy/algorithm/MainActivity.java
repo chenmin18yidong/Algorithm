@@ -73,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     items[i] = items[j];
                     items[j] = temp;
 
+
                 }
             }
         }
