@@ -30,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         edtItems = findViewById(R.id.activity_main_edt_items);
         findViewById(R.id.activity_main_btn_generate).setOnClickListener(this);
         findViewById(R.id.activity_main_btn_sort).setOnClickListener(this);
+        findViewById(R.id.bt1).setOnClickListener(this);
         tvResult = findViewById(R.id.activity_main_tv_result);
     }
     @Override
@@ -59,8 +60,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //把第二个从空白区域拿出，放到第一个的位置，然后拿已经变化的第二个和第三个做比较
         //往后依次进行比较，直到所有比较完成.
 
+        for(int i=1;i<items.length;i++){
+            int j=i-1;
+            if(items[j].compareTo(items[i])<0){
+                continue;
+            }
+            Integer temp=items[i];
+            while (j>=0&&items[j].compareTo(temp)>0){
+                items[j+1]=items[j];
+                j--;
+
+            }
+            items[j+1]=temp;
+        }}
         // 定义一个i为0；
-        for(int i = 0;i <items.length;i++){
+        /*for(int i = 0;i <items.length;i++){
             int k = i;
             for(int j = i+1;j < items.length;j++){
                 if(items[j] < items[k]){
@@ -75,9 +89,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                items[i] = items[k];
                 items[k] = temp;
             }
-        }
+        }*/
 
-    }
+
 
     private void displayItems(TextView tv) {
         String display = "";

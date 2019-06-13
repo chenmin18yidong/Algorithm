@@ -44,7 +44,7 @@
         android:layout_height="wrap_content"
         android:inputType="text"/>
     <Button
-        android:onClick="onClick"
+
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="直接插入排序"
