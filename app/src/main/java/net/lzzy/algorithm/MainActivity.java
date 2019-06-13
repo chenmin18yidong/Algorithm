@@ -1,11 +1,15 @@
 package net.lzzy.algorithm;
 
+import android.accounts.AbstractAccountAuthenticator;
 import android.provider.ContactsContract;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+
+import net.lzzy.algorithm.algorilb.DireadSort;
 
 import org.w3c.dom.Text;
 
@@ -41,26 +45,25 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 displayItems(edtItems);
                 break;
             case R.id.activity_main_btn_sort:
-                directSort();
+                DireadSort sort=new DireadSort(items);
+                sort.ddd();
+                items.s
+                new AlertDialog().
+                sort.getDuration();
                 displayItems(tvResult);
                 break;
             case R.id.bt1:
-                AAA();
+
+
                 displayItems(et1);
                 default:
                 break;
         }
     }
 
-    private void AAA() {
-
-        //给一个空白区域，
-        //第一遍循环，以第一个为最小值，和后面几个作比较，
-        //若第二个比第一个大，就不做处理，往下作比较，若第二个小于第一个，则把第二个放入空白区域，第一个和第二个交换
-        //把第二个从空白区域拿出，放到第一个的位置，然后拿已经变化的第二个和第三个做比较
-        //往后依次进行比较，直到所有比较完成.
-
-        for(int i=1;i<items.length;i++){
+  /*  private void AAA() {
+        DireadSort aa=new DireadSort();
+        /*for(int i=1;i<items.length;i++){
             int j=i-1;
             if(items[j].compareTo(items[i])<0){
                 continue;
@@ -72,7 +75,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             }
             items[j+1]=temp;
-        }}
+        }}*/
         // 定义一个i为0；
         /*for(int i = 0;i <items.length;i++){
             int k = i;
@@ -112,7 +115,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //min=j;
         //}}
         //swap(min,i)
-        for(int i=0; i<items.length; i++) {
+       /* for(int i=0; i<items.length; i++) {
             for(int j=i+1; j<items.length; j++) {
                 if(items[i] <items[j]) {
                     int temp = items[i];
@@ -120,7 +123,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     items[j]=  temp;
                 }
             }
-        }
+        }*/
     }
     private void generateItems() {
         items = new Integer[10];
