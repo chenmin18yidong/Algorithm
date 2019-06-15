@@ -8,8 +8,11 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
-import net.lzzy.algorithm.algorilb.DireadSort;
+import net.lzzy.algorithm.algorilb.DireShrt;
+import net.lzzy.algorithm.algorilb.DireShrt;
+import net.lzzy.algorithm.algorilb.Sdc;
 
 import org.w3c.dom.Text;
 
@@ -45,16 +48,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 displayItems(edtItems);
                 break;
             case R.id.activity_main_btn_sort:
-                DireadSort sort=new DireadSort(items);
-                sort.ddd();
-                items.s
-                new AlertDialog().
-                sort.getDuration();
+               DireShrt shrt=new DireShrt(items);
+                .shrt();
+                String result=way.getResult();
+                tvResult.setText(result);
+                Toast.makeText(this, "时间间隔"+way.getDuration(), Toast.LENGTH_SHORT).show();
+
                 displayItems(tvResult);
                 break;
             case R.id.bt1:
-
-
+                Sdc sdc=new Sdc(items);
+               sdc.bbb();
                 displayItems(et1);
                 default:
                 break;
@@ -93,9 +97,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 items[k] = temp;
             }
         }*/
-
-
-
     private void displayItems(TextView tv) {
         String display = "";
         for (Integer i : items) {
@@ -131,6 +132,5 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         for (int i = 0; i < items.length; i++) {
             items[i] = generator.nextInt(99);
         }
-
     }
 }
