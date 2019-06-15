@@ -12,7 +12,7 @@ public class DireShrt<T extends Comparable<T>>extends Sdc <T>{
     public  DireShrt(T[]items){
         super(items);
     }
-    public  void shrt(){
+    public  void sort(){
         long start=System.currentTimeMillis();
         for(int i=0;i<items.legth-1;i++){
             int minPos=i;
