@@ -6,39 +6,46 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import net.lzzy.algorithm.algorilb.BaseSort;
 import net.lzzy.algorithm.algorilb.DireShrt;
 import net.lzzy.algorithm.algorilb.DireShrt;
 import net.lzzy.algorithm.algorilb.Sdc;
+import net.lzzy.algorithm.algorilb.SortFactory;
 
 import org.w3c.dom.Text;
 
+import java.io.FileDescriptor;
 import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Objects;
 import java.util.Random;
 import java.util.Scanner;
+
+import javax.xml.transform.sax.TransformerHandler;
 
 /**
  * @author Administrator
  */
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
     private Integer[] items;
-    private EditText edtItems,et1;
+    private EditText edtItems;
     private TextView tvResult;
-
+    Spinner spinner;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        et1=findViewById(R.id.et1);
-        edtItems = findViewById(R.id.activity_main_edt_items);
+        edtItems=findViewById(R.id.activity_main_edt_items);
         findViewById(R.id.activity_main_btn_generate).setOnClickListener(this);
         findViewById(R.id.activity_main_btn_sort).setOnClickListener(this);
-        findViewById(R.id.bt1).setOnClickListener(this);
         tvResult = findViewById(R.id.activity_main_tv_result);
+        spinner=findViewById(R.id.spinneer);
     }
     @Override
     public void onClick(View v) {
@@ -48,21 +55,32 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 displayItems(edtItems);
                 break;
             case R.id.activity_main_btn_sort:
-               DireShrt shrt=new DireShrt(items);
-                .shrt();
-                String result=way.getResult();
-                tvResult.setText(result);
-                Toast.makeText(this, "时间间隔"+way.getDuration(), Toast.LENGTH_SHORT).show();
-
+                BaseSort<Integer>sort= SortFactory.getInstance(spinner.getSelectedItemPosition(),items);
+                BaseSort<Integer>sortnotnull= Objects.requireNonNull(sort);
+                sortnotnull.getDuration();
+                String resul=sortnotnull.getResult();
+                tvResult.setText(resul);
                 displayItems(tvResult);
-                break;
-            case R.id.bt1:
-                Sdc sdc=new Sdc(items);
-               sdc.bbb();
-                displayItems(et1);
+                  new AlertDialog.Builder(MainActivity.this).setTitle("排序完成")
+                          .setMessage("对比次数:"+sort.getComparecount()+
+                          "\n移动次数:"+sort.getMovestep()+"\n交换次数"+sort.getSwacount()+
+                          "\n运行时长:"+sort.getDuration()).show();
+                  break;
                 default:
                 break;
         }
+    }
+
+    private void displayItems(TextView tv){
+        String display="";
+        for(Integer i:items){
+            display=display.concat(i+",");
+        }
+        display=display.substring(0,display.length()-1);
+        tv.setText(display);
+    }
+    private void xier() {
+
     }
 
     private void displayItems(TextView tv) {
