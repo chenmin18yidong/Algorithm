@@ -13,9 +13,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import net.lzzy.algorithm.algorilb.BaseSort;
-import net.lzzy.algorithm.algorilb.DireShrt;
-import net.lzzy.algorithm.algorilb.DireShrt;
-import net.lzzy.algorithm.algorilb.Sdc;
+
 import net.lzzy.algorithm.algorilb.SortFactory;
 
 import org.w3c.dom.Text;
@@ -52,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         switch (v.getId()) {
             case R.id.activity_main_btn_generate:
                 generateItems();
-                displayItems(edtItems);
+
                 break;
             case R.id.activity_main_btn_sort:
                 BaseSort<Integer>sort= SortFactory.getInstance(spinner.getSelectedItemPosition(),items);
@@ -60,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 sortnotnull.getDuration();
                 String resul=sortnotnull.getResult();
                 tvResult.setText(resul);
-                displayItems(tvResult);
+
                   new AlertDialog.Builder(MainActivity.this).setTitle("排序完成")
                           .setMessage("对比次数:"+sort.getComparecount()+
                           "\n移动次数:"+sort.getMovestep()+"\n交换次数"+sort.getSwacount()+
@@ -71,17 +69,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    private void displayItems(TextView tv){
-        String display="";
-        for(Integer i:items){
-            display=display.concat(i+",");
-        }
-        display=display.substring(0,display.length()-1);
-        tv.setText(display);
+    private void displayItems() {
+        displayItems();
     }
-    private void xier() {
 
-    }
+//    private void displayItems(TextView tv){
+//        String display="";
+//        for(Integer i:items){
+//            display=display.concat(i+",");
+//        }
+//        display=display.substring(0,display.length()-1);
+//        tv.setText(display);
+//    }
+//    private void xier() {
+//
+//    }
 
     private void displayItems(TextView tv) {
         String display = "";
